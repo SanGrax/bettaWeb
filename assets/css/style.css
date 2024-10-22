@@ -940,18 +940,22 @@ section {
 #customers {
   padding: 60px 0;
   background-color: #f7f7f7;
+  overflow: hidden; /* Para ocultar los logos fuera de la pantalla */
 }
 
 .logos {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: nowrap; /* Mantén los logos en una fila horizontal */
   animation: scrollLogos 15s linear infinite;
+  white-space: nowrap; /* Evita el salto de línea */
 }
 
 .logo-box {
   padding: 20px;
   transition: transform 0.3s ease;
+  flex: 0 0 auto; /* Asegura que los logos no se encojan */
 }
 
 .logo-box img {
@@ -959,18 +963,131 @@ section {
   height: auto;
 }
 
+/* Animación de desplazamiento continuo de los logos */
 @keyframes scrollLogos {
   from {
-    transform: translateX(100%);
+    transform: translateX(100%); /* Comienza fuera de la pantalla a la derecha */
   }
   to {
-    transform: translateX(-100%);
+    transform: translateX(-100%); /* Desplazamiento continuo hacia la izquierda */
   }
 }
 
+/* Efecto de zoom cuando el usuario pasa el mouse sobre el logo */
 .logo-box:hover {
   transform: scale(1.1);
 }
+
+/* Estilos responsivos para pantallas más pequeñas */
+
+/* Dispositivos de hasta 1024px */
+@media (max-width: 1024px) {
+  .logos {
+    animation: scrollLogos 20s linear infinite; /* Desplazamiento más lento en pantallas medianas */
+  }
+
+  .logo-box {
+    padding: 15px;
+  }
+}
+
+/* Dispositivos de hasta 768px (tablets y smartphones grandes) */
+@media (max-width: 768px) {
+  .logos {
+    animation: scrollLogos 25s linear infinite; /* Desplazamiento más lento en pantallas más pequeñas */
+  }
+
+  .logo-box {
+    padding: 10px;
+  }
+
+  .logo-box img {
+    max-width: 80%; /* Reduce el tamaño de los logos */
+  }
+}
+
+/* Dispositivos de hasta 480px (smartphones pequeños) */
+@media (max-width: 480px) {
+  .logos {
+    animation: scrollLogos 30s linear infinite; /* Desplazamiento más lento en pantallas muy pequeñas */
+  }
+
+  .logo-box {
+    padding: 5px;
+  }
+
+  .logo-box img {
+    max-width: 70%; /* Aún más pequeño en pantallas de smartphones */
+  }
+}
+
+
+
+
+/*--------------------------------------------------------
+#whatsapp
+--------------------------------------------------------*/
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #FFF;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 1000;
+  transition: background-color 0.3s;
+}
+
+.whatsapp-float i {
+  margin-top: 15px;
+}
+
+.whatsapp-float:hover {
+  background-color: #128c7e;
+  color: #FFF;
+  text-decoration: none;
+}
+
+.whatsapp-float .tooltip-text {
+  visibility: hidden;
+  width: 140px;
+  background-color: #128c7e; /* Matching hover color */
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Position above the button */
+  left: 50%;
+  margin-left: -70px; /* Center the tooltip */
+  opacity: 0;
+  font-size: 12px; /* Smaller font size */
+  transition: opacity 0.3s;
+}
+
+.whatsapp-float .tooltip-text::after {
+  content: "";
+  position: absolute;
+  top: 100%; /* Below the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #128c7e transparent transparent transparent; /* Matching background color */
+}
+
+.whatsapp-float:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+
 
 
 /*--------------------------------------------------------------
