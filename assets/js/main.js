@@ -210,7 +210,8 @@
       type: 'bullets',
       clickable: true
     }
-  });
+  });portfolio-lightbox
+
 
   /**
    * Initiate Pure Counter 
