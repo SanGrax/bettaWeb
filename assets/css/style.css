@@ -91,7 +91,7 @@ h6 {
 }
 
 #header .logo img {
-  max-height: 100px;
+  max-height: 70px;
 }
 
 @media (max-width: 992px) {
@@ -147,7 +147,7 @@ h6 {
 .navbar .active,
 .navbar .active:focus,
 .navbar li:hover>a {
-  color: #396eb5;
+  color: #65bc95;
 }
 
 /* .navbar .getstarted,
@@ -343,43 +343,68 @@ h6 {
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-#hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden; /* Oculta cualquier contenido que se salga del contenedor */
+/* Estilos para el Texto de Bienvenida */
+.hero-intro-section {
+  background-color: #000;
+  padding: 100px 20px 20px; /* Agrega un padding superior para evitar que el texto quede cubierto por el navbar */
+  text-align: left;
 }
 
+.hero-intro h2 {
+  font-size: 90px;
+  font-family: 'Work Sans', sans-serif;
+  color: #ffffff; /* Color blanco para el "BIENVENIDO" */
+  margin: 0;
+}
+
+.hero-intro h3 {
+  font-size: 90px;
+  font-family: 'Work Sans', sans-serif;
+  line-height: 1.1;
+}
+
+.hero-intro .white-text {
+  color: #ffffff; /* Color blanco para A LA */
+}
+
+.hero-intro .highlight {
+  color: #fdde59; /* Color amarillo para NUEVA y COMUNICACIÓN */
+}
+
+.hero-intro p {
+  font-size: 20px;
+  color: #ffffff;
+  font-family: 'Work Sans', sans-serif;
+  margin-top: 10px;
+}
+
+.hero-intro h3 span:first-child {
+  margin-top: 0; /* Elimina el margen superior para acercar las palabras */
+}
+.hero-intro h3 span {
+  line-height: 0; /* Ajusta este valor si necesitas que las líneas estén más cerca */
+}
+
+/* Estilos para la Sección del Video */
+.hero-video-section {
+  width: 100%;
+  background-color: #000;
+  padding: 0;
+}
+
+.hero-video-container {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
 
 #hero-video {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ajusta el video para cubrir todo el fondo */
-  z-index: -1; /* Asegura que el video esté detrás del contenido */
-}
-#hero .container {
-  position: relative;
-  z-index: 1; /* Asegura que el contenido esté por encima del video */
-  color: white; /* Asegúrate de que el texto sea legible sobre el video */
+  height: auto;
 }
 
-#hero h1 {
-  margin: 0;
-  font-size: 48px;
-  font-weight: 800; /* ExtraBold */
-  line-height: 56px;
-  /* color: #434175; */
-  font-family: 'Barlow Semi Condensed', sans-serif;
-  
-}
 
-#hero h2 {
-  margin: 10px 0 0 0;
-  font-size: 20px;
-}
+
 
 #hero ul {
   margin-top: 15px;
@@ -444,58 +469,92 @@ h6 {
   border-color: #7272f5;
 }
 
+/* Estilo para pantallas grandes */
 @media (min-width: 1024px) {
   #hero {
-    background-attachment: fixed;
+    background-attachment: fixed; /* Fija el fondo para pantallas grandes */
   }
 }
 
+/* Estilos para pantallas medianas (tablet y pantallas más pequeñas) */
 @media (max-width: 991px) {
   #hero .hero-img {
-    text-align: center;
+    text-align: center; /* Centra la imagen */
   }
 
   #hero .hero-img img {
-    width: 50%;
+    width: 70%; /* Ajusta el tamaño de la imagen */
+  }
+
+  /* Ajuste de texto para pantallas más pequeñas */
+  .hero-intro h3 {
+    font-size: 60px;
+    line-height: 1.2;
+    text-align: left
+  }
+
+  .hero-intro h2 {
+    font-size: 50px;
+    line-height: 1.2;
+    text-align: left
+  }
+
+  .hero-intro p {
+    font-size: 20px;
+    text-align: left
   }
 }
 
+/* Estilos para pantallas pequeñas (móviles en apaisado o menores) */
 @media (max-width: 768px) {
-  #hero h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-
-  #hero h2 {
-    font-size: 18px;
-    line-height: 24px;
-    margin-bottom: 30px;
-  }
-
   #hero .hero-img img {
-    width: 70%;
+    width: 80%; /* Ajuste del tamaño de la imagen en dispositivos más pequeños */
+  }
+
+  /* Ajuste de texto en dispositivos más pequeños */
+  .hero-intro h3 {
+    font-size: 48px; /* Reducir tamaño de fuente */
+    line-height: 1.2;
+    text-align: left
+  }
+
+  .hero-intro h2 {
+    font-size: 40px; /* Ajustar tamaño de h2 */
+    line-height: 1.3;
+    margin-bottom: 20px; /* Menos espacio debajo */
+    text-align: left
+  }
+
+  .hero-intro p {
+    font-size: 18px; /* Ajustar tamaño de párrafo */
+    line-height: 1.6; /* Espaciado adecuado */
+    text-align: left
   }
 }
 
+/* Estilos para pantallas muy pequeñas (móviles) */
 @media (max-width: 575px) {
   #hero {
-    text-align: center;
+    text-align: left; /* Centrar el texto */
   }
 
-  #hero ul {
-    text-align: left;
-    font-size: 14px;
+  .hero-intro h3 {
+    font-size: 36px; /* Tamaño aún más pequeño en pantallas muy pequeñas */
+    line-height: 1.3;
+    text-align: left
   }
 
-  #hero .hero-img img {
-    width: 80%;
+  .hero-intro h2 {
+    font-size: 36px; /* Reducir aún más el tamaño del texto */
+    line-height: 1.3;
+    text-align: left
   }
 
-  #hero .btn-get-started,
-  #hero .btn-get-quote {
-    padding-left: 18px;
-    padding-right: 18px;
-    font-size: 14px;
+  .hero-intro p {
+    font-size: 16px; /* Tamaño de texto para dispositivos móviles pequeños */
+    line-height: 1.6;
+    padding: 0 15px; /* Añadir padding para evitar que el texto toque los bordes */
+    text-align: left
   }
 }
 
@@ -1593,14 +1652,14 @@ section {
   line-height: 1;
   font-weight: 700;
   color: #ffffff;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 #footer .footer-top .footer-contact p {
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   color: #ffffff;
 }
 
@@ -1614,7 +1673,7 @@ section {
 
 #footer .footer-top .footer-links {
   margin-bottom: 30px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   color: #ffffff;
 }
 
@@ -1622,7 +1681,7 @@ section {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   color: #ffffff;
 }
 
@@ -1649,13 +1708,13 @@ section {
   transition: 0.3s;
   display: inline-block;
   line-height: 1;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   color: #ffffff;
 }
 
 #footer .footer-top .footer-links ul a:hover {
   text-decoration: none;
-  color: #396eb5;
+  color: #65bc95;
 }
 
 #footer .footer-newsletter {
@@ -1757,6 +1816,6 @@ section {
 
 
 .copyright {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   color: #ffffff;
 }
