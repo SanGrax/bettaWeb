@@ -3,7 +3,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   color: #444444;
 }
 
@@ -13,7 +13,7 @@ a {
 }
 
 a:hover {
-  color: #fdde59;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -23,7 +23,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Alegreya Sans SC', sans-serif;
+  font-family: 'Work Sans', sans-serif;
     font-weight: 800;
 }
 
@@ -374,7 +374,7 @@ h6 {
 .hero-intro p {
   font-size: 20px;
   color: #ffffff;
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Sarala', sans-serif;
   margin-top: 10px;
 }
 
@@ -572,7 +572,7 @@ section {
 .section-title {
   text-align: center;
   padding-bottom: 30px;
-  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-weight: 800;
 }
 
@@ -584,24 +584,15 @@ section {
   padding-bottom: 20px;
   position: relative;
   color: #ffffff;
-  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-weight: 200;
 }
 
-.section-title h2::after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 50px;
-  height: 3px;
-  background: #FF0022;
-  bottom: 0;
-  left: calc(50% - 25px);
-}
+
 
 .section-title p {
   margin-bottom: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Sarala', sans-serif;
   font-weight: 500; /* Medium */
 }
 
@@ -614,20 +605,21 @@ section {
   line-height: 50px;
   margin-bottom: 20px;
   /* color: #434175; */
-  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .about .content h3 {
   font-weight: 400;
   line-height: 32px;
   font-size: 24px;
-  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-family: 'Sarala', sans-serif;
+  font-weight: 500; /* Medium */
 }
 
 .about .content ul {
   list-style: none;
   padding: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Sarala', sans-serif;
   font-weight: 500; /* Medium */
 }
 
@@ -649,7 +641,7 @@ section {
   
 }
 .about .container P {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Sarala', sans-serif;
   font-weight: 500; /* Medium */
 }
 
@@ -756,6 +748,9 @@ section {
 #services {
   background-color: #070707;
 }
+.services h2{
+  font-family: 'Work Sans', sans-serif;
+}
 
 .services .icon-box {
   position: relative;
@@ -768,7 +763,7 @@ section {
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   color: #ffffff;
 }
@@ -819,7 +814,10 @@ section {
 }
 
 .services .iconbox-orange .background {
-  background-image: url('/assets/img/logo turismo.png');
+  background-image: url('/assets/img/fotoGifGato.png');
+}
+.services .iconbox-orange .background:hover {
+  background-image: url('/assets/img/gifGato.webp');
 }
 
 .services .iconbox-pink .background {
@@ -835,7 +833,10 @@ section {
 }
 
 .services .iconbox-red .background {
-  background-image: url('/assets/img/imgInfluencers.webp');
+  background-image: url('/assets/img/fotoGifInfluencer.png');
+}
+.services .iconbox-red .background:hover {
+  background-image: url('/assets/img/gifInfluencer.webp');
 }
 
 /* Estilos de encabezado y párrafo */
@@ -854,7 +855,7 @@ section {
   font-weight: bold;
   color: #ffffff;
   text-align: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .no-videitos .line {
@@ -866,7 +867,7 @@ section {
   color: #f69773; /* Color específico para "videitos" */
   font-size: 70px; /* Tamaño específico solo para "videitos" */
   padding: 5px 0; /* Ajusta el padding si necesitas más espacio */
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Work Sans', sans-serif;
 }
 
 .line .no {
@@ -878,30 +879,39 @@ section {
 
 
 #customers {
-  padding: 5px 0;
-  background-color: #f7f7f7;
-  overflow: hidden; /* Para ocultar los logos fuera de la pantalla */
+  padding: 20px 0;
+  background-color: #000;
+  overflow: hidden;
 }
 
 .logos {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  flex-wrap: nowrap; /* Mantén los logos en una fila horizontal */
-  animation: scrollLogos 15s linear infinite;
-  white-space: nowrap; /* Evita el salto de línea */
+  flex-wrap: nowrap;
+  animation: scrollLogos 10s linear infinite;
 }
 
 .logo-box {
   padding: 20px;
+  flex: 0 0 auto;
   transition: transform 0.3s ease;
-  flex: 0 0 auto; /* Asegura que los logos no se encojan */
 }
 
 .logo-box img {
   max-width: 100%;
   height: auto;
 }
+
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 
 /* Animación de desplazamiento continuo de los logos */
 @keyframes scrollLogos {
