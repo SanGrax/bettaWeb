@@ -765,14 +765,15 @@ section {
   border-radius: 10px;
   overflow: hidden;
   padding: 20px;
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
   height: 350px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   font-family: 'Work Sans', sans-serif;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   color: #ffffff;
 }
 
@@ -789,6 +790,10 @@ section {
 }
 
 /* Aplica opacidad solo al fondo en hover */
+.services .icon-box:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 .services .icon-box:hover .background {
   opacity: 0.4;
 }
@@ -801,50 +806,42 @@ section {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  
 }
 
-/* Hover: el texto se muestra, la imagen se opaca */
 .services .icon-box:hover h4,
 .services .icon-box:hover p {
   opacity: 1;
   visibility: visible;
 }
 
-.services .icon-box:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
 /* Estilos para cada icon-box individual */
-.services .iconbox-blue .background {
-  background-image: url('/assets/img/imgContent.jpg');
-}
+.services .iconbox-blue .background { background-image: url('/assets/img/imgContent.jpg'); }
+.services .iconbox-orange .background { background-image: url('/assets/img/fotoGifGato.png'); }
+.services .iconbox-pink .background { background-image: url('/assets/img/imgMotion.jpg'); }
+.services .iconbox-teal .background { background-image: url('/assets/img/imgCopy.jpg'); }
+.services .iconbox-black .background { background-image: url('/assets/img/imgSocial.webp'); }
+.services .iconbox-red .background { background-image: url('/assets/img/fotoGifInfluencer.png'); }
 
-.services .iconbox-orange .background {
-  background-image: url('/assets/img/fotoGifGato.png');
-}
 .services .iconbox-orange .background:hover {
   background-image: url('/assets/img/gifGato.webp');
+  transition: background 0.5s ease-in-out;
 }
 
-.services .iconbox-pink .background {
-  background-image: url('/assets/img/imgMotion.jpg');
-}
-
-.services .iconbox-teal .background {
-  background-image: url('/assets/img/imgCopy.jpg');
-}
-
-.services .iconbox-black .background {
-  background-image: url('/assets/img/imgSocial.webp');
-}
-
-.services .iconbox-red .background {
-  background-image: url('/assets/img/fotoGifInfluencer.png');
-}
 .services .iconbox-red .background:hover {
   background-image: url('/assets/img/gifInfluencer.webp');
+  transition: background 0.5s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .services .icon-box {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .services .icon-box h4 {
+    font-size: 1.2rem;
+  }
 }
 
 /* Estilos de encabezado y párrafo */
