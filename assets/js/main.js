@@ -21,6 +21,50 @@
     }
   }
 
+  document.addEventListener("DOMContentLoaded", () => {
+    const popup = document.getElementById("popup-carousel");
+    const popupImg = document.querySelector(".carousel-img");
+    const closeBtn = document.querySelector(".close-btn");
+    const prevBtn = document.querySelector(".prev-btn");
+    const nextBtn = document.querySelector(".next-btn");
+  
+    // Imágenes del carrusel
+    let currentIndex = 0;
+    let currentImages = [];
+  
+     // Detectar clic en cualquier enlace de icon-box
+  document.querySelectorAll(".icon-box a").forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      currentImages = JSON.parse(link.getAttribute("data-images")); // Obtener imágenes
+      currentIndex = 0; // Reiniciar el índice
+      popupImg.src = currentImages[currentIndex]; // Mostrar la primera imagen
+      popup.classList.remove("hidden");
+      popup.style.opacity = "1";
+      popup.style.visibility = "visible";
+    });
+  });
+  
+    // Cerrar popup
+    closeBtn.addEventListener("click", () => {
+      popup.style.opacity = "0";
+      popup.style.visibility = "hidden";
+      setTimeout(() => popup.classList.add("hidden"), 300);
+    });
+  
+   // Navegar en el carrusel
+    prevBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    popupImg.src = currentImages[currentIndex];
+  });
+
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    popupImg.src = currentImages[currentIndex];
+  });
+});
+  
+
   /**
    * Easy event listener function
    */
