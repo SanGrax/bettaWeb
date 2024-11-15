@@ -585,7 +585,7 @@ section {
   position: relative;
   color: #ffffff;
   font-family: 'Work Sans', sans-serif;
-  font-weight: 200;
+  font-weight: 800;
 }
 
 
@@ -599,12 +599,16 @@ section {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
+#about{
+  background-color: #000000;
+}
+
 .about .content h2 {
   font-weight: 400;
   font-size: 44px;
   line-height: 50px;
   margin-bottom: 20px;
-  /* color: #434175; */
+  color: #ffffff;
   font-family: 'Work Sans', sans-serif;
 }
 
@@ -614,6 +618,7 @@ section {
   font-size: 24px;
   font-family: 'Sarala', sans-serif;
   font-weight: 500; /* Medium */
+  color: #ffffff;
 }
 
 .about .content ul {
@@ -621,6 +626,7 @@ section {
   padding: 0;
   font-family: 'Sarala', sans-serif;
   font-weight: 500; /* Medium */
+  color: #ffffff;
 }
 
 .about .content ul li {
@@ -643,6 +649,7 @@ section {
 .about .container P {
   font-family: 'Sarala', sans-serif;
   font-weight: 500; /* Medium */
+  color: #ffffff;
 }
 
 /*--------------------------------------------------------------
@@ -746,10 +753,11 @@ section {
 
 /* Sección general */
 #services {
-  background-color: #070707;
+  background-color: #000000;
 }
 .services h2{
   font-family: 'Work Sans', sans-serif;
+  font-weight: 800;
 }
 
 .services .icon-box {
@@ -883,13 +891,17 @@ section {
   background-color: #000;
   overflow: hidden;
 }
+.customers h2{
+  color: #ffffff;
+  text-align: center;
+}
 
 .logos {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-wrap: nowrap;
-  animation: scrollLogos 10s linear infinite;
+  animation: scrollLogos 20s linear infinite;
 }
 
 .logo-box {
@@ -1455,36 +1467,81 @@ section {
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
-.contact .info-box {
-  color: #444444;
+#contact {
+  background-color: #000000;
+  padding: 40px 0;
+}
+.contact .section-title h2 {
+  color: #ffffff;
+  font-size: 28px;
   text-align: center;
-  box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
-  padding: 20px 0 30px 0;
-  background: #fff;
+  margin-bottom: 30px;
+}
+
+.contact .info-box {
+  background: #121212;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(101, 188, 149, 0.5);
+  padding: 20px;
+  margin: 0 auto; /* Centers the boxes in their columns */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact .info-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(101, 188, 149, 0.8);
+}
+
+
+#contact {
+  background-color: #000000;
+  padding: 40px 0;
+}
+
+.contact .section-title h2 {
+  color: #ffffff;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.contact .info-box {
+  background: #000000;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 0 15px #fdde59;
+  padding: 20px;
+  margin: 0 auto; /* Centers the boxes in their columns */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact .info-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px #fdde59;
 }
 
 .contact .info-box i {
-  font-size: 32px;
-  color: #5a5af3;
-  border-radius: 50%;
-  padding: 8px;
+  font-size: 40px;
+  color: #396eb5;
+  margin-bottom: 15px;
 }
 
+
 .contact .info-box h3 {
-  font-size: 20px;
-  color: #777777;
-  font-weight: 700;
-  margin: 10px 0;
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 10px;
 }
 
 .contact .info-box p {
-  padding: 0;
-  line-height: 24px;
   font-size: 14px;
-  margin-bottom: 0;
+  line-height: 1.5;
+  margin: 0;
 }
-
-.contact .php-email-form {
+/* .contact .php-email-form {
   background: #fff;
   box-shadow: 0 0 30px rgba(214, 215, 216, 0.6);
   padding: 30px;
@@ -1571,6 +1628,20 @@ section {
 
 .contact .php-email-form button[type=submit]:hover {
   background: #11190C;
+} */
+
+@media (max-width: 768px) {
+  .contact .info-box {
+    margin-bottom: 20px;
+  }
+
+  .contact .info-box p {
+    font-size: 12px;
+  }
+
+  .contact .info-box i {
+    font-size: 36px;
+  }
 }
 
 @keyframes animate-loading {
@@ -1722,6 +1793,9 @@ section {
   color: #ffffff;
 }
 
+#footer .colorPunto{
+  color: #65bc95;
+}
 #footer .footer-top .footer-links ul a:hover {
   text-decoration: none;
   color: #65bc95;
