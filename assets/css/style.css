@@ -1902,81 +1902,84 @@ section {
 }
 
 
-/* Popup base */
-.popup {
+/* Popup contenedor */
+#popup-carousel {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
-  transition: opacity 0.3s ease;
-}
-
-/* Ocultar por defecto */
-.popup.hidden {
   opacity: 0;
   visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 1000; /* Asegura que esté encima de todo */
 }
 
-/* Contenido del popup */
-.popup-content {
+/* Imágenes del carrusel */
+/* Ajustar la imagen del carrusel */
+.carousel-img {
+  max-width: 95%; /* Imagen más grande */
+  max-height: 85vh;
+  margin: 0 auto;
+  display: block;
+}
+.carousel-container {
   position: relative;
-  width: 80%;
-  max-width: 600px;
-  background-color: #fff;
-  border-radius: 10px;
-  overflow: hidden;
   text-align: center;
   padding: 20px;
 }
 
-/* Botón de cierre */
+/* Botones de navegación */
+
+
+.prev-btn:hover, .next-btn:hover {
+  background-color: transparent; /* Fondo transparente */
+  color: #ffffff; /* Asegura que el texto sea blanco para visibilidad */
+  border: 1px solid rgba(255, 255, 255, 0.5); /* Opcional: añadir un borde tenue */
+}
+
+/* Posición de los botones */
+/* Botones de navegación */
+.prev-btn, .next-btn {
+  position: absolute;
+  top: 50%; /* Centrar verticalmente en relación con la imagen */
+  transform: translateY(-50%); /* Ajuste preciso del centrado */
+  font-size: 20px;
+  padding: 10px 15px;
+  z-index: 2; /* Aseguramos que estén por encima de la imagen */
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Botón izquierdo */
+.prev-btn {
+  left: 10px; /* Pegado al borde izquierdo */
+}
+
+/* Botón derecho */
+.next-btn {
+  right: 10px; /* Pegado al borde derecho */
+}
+/* Botón de cierre sigue estando en la esquina superior */
 .close-btn {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 24px;
-  cursor: pointer;
-  color: #000;
-}
-
-/* Carrusel */
-.carousel {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.carousel img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
-.prev-btn,
-.next-btn {
-  font-size: 2rem;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
   background: none;
+  color: white;
   border: none;
-  color: #000;
   cursor: pointer;
-  padding: 10px;
-  transition: color 0.3s ease;
 }
 
-.prev-btn:hover,
-.next-btn:hover {
-  color: #555;
-}
-
-
-
-
+/* Responsividad para dispositivos móviles */
 @media (max-width: 768px) {
   .carousel-img {
     max-width: 95%; /* Mayor espacio en pantallas pequeñas */
@@ -1993,5 +1996,6 @@ section {
     font-size: 35px;
   }
 }
+
 
 
