@@ -833,23 +833,23 @@ section {
 }
 
 @media (max-width: 768px) {
-  .services .icon-boxes {
-    display: flex; /* Activa flexbox en el contenedor */
-    flex-wrap: wrap; /* Permite que las cajas se ajusten a una nueva línea si es necesario */
-    justify-content: center; /* Centra las cajas horizontalmente */
-    gap: 10px; /* Espacio uniforme entre las cajas */
-  }
-
   .services .icon-box {
-    width: calc(45%); /* Cada caja ocupa el 45% del ancho */
-    height: auto; /* Ajuste automático de la altura */
-    padding: 10px;
-    box-sizing: border-box; /* Incluye el padding dentro del ancho total */
+    margin-bottom: 20px; /* Espacio entre las cajas */
+    width: 90%; /* Asegura que las cajas no ocupen todo el ancho */
+    margin-left: auto; /* Centra las cajas horizontalmente */
+    margin-right: auto; /* Centra las cajas horizontalmente */
+    height: auto; /* Ajusta la altura automáticamente */
+    padding: 20px; /* Espaciado interno */
+    box-sizing: border-box; /* Incluye padding dentro del ancho total */
   }
 
   .services .icon-box h4 {
-    font-size: 1rem; /* Ajusta el tamaño del texto */
+    font-size: 1.2rem; /* Tamaño de fuente más pequeño */
     text-align: center; /* Centra el texto dentro de cada caja */
+  }
+
+  .services .icon-boxes {
+    display: block; /* Cambia de flex a bloque para apilar las cajas verticalmente */
   }
 }
 
