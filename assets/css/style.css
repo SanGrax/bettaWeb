@@ -355,6 +355,8 @@ h6 {
   font-family: 'Work Sans', sans-serif;
   color: #ffffff; /* Color blanco para el "BIENVENIDO" */
   margin: 0;
+  width: 2177px; /* Ancho fijo */
+  height: 96px; /* Alto fijo */
 }
 
 .hero-intro h3 {
