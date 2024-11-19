@@ -833,16 +833,27 @@ section {
 }
 
 @media (max-width: 768px) {
+  .services .icon-boxes {
+    display: flex; /* Activa flexbox en el contenedor */
+    flex-wrap: wrap; /* Permite que las cajas se ajusten a una nueva línea si es necesario */
+    justify-content: center; /* Centra las cajas horizontalmente */
+    gap: 10px; /* Espacio uniforme entre las cajas */
+  }
+
   .services .icon-box {
-    width: 100%;
-    height: auto;
+    width: calc(45%); /* Cada caja ocupa el 45% del ancho */
+    height: auto; /* Ajuste automático de la altura */
     padding: 10px;
+    box-sizing: border-box; /* Incluye el padding dentro del ancho total */
   }
 
   .services .icon-box h4 {
-    font-size: 1.2rem;
+    font-size: 1rem; /* Ajusta el tamaño del texto */
+    text-align: center; /* Centra el texto dentro de cada caja */
   }
 }
+
+
 
 /* Estilos de encabezado y párrafo */
 .icon-box h4 {
@@ -939,21 +950,12 @@ section {
 
 /* Estilos responsivos para pantallas más pequeñas */
 
-/* Dispositivos de hasta 1024px */
-@media (max-width: 1024px) {
-  .logos {
-    animation: scrollLogos 20s linear infinite; /* Desplazamiento más lento en pantallas medianas */
-  }
 
-  .logo-box {
-    padding: 15px;
-  }
-}
 
 /* Dispositivos de hasta 768px (tablets y smartphones grandes) */
 @media (max-width: 768px) {
   .logos {
-    animation: scrollLogos 25s linear infinite; /* Desplazamiento más lento en pantallas más pequeñas */
+    animation: scrollLogos 20s linear infinite; /* Desplazamiento más lento en pantallas más pequeñas */
   }
 
   .logo-box {
@@ -968,7 +970,7 @@ section {
 /* Dispositivos de hasta 480px (smartphones pequeños) */
 @media (max-width: 480px) {
   .logos {
-    animation: scrollLogos 30s linear infinite; /* Desplazamiento más lento en pantallas muy pequeñas */
+    animation: scrollLogos 20s linear infinite; /* Desplazamiento más lento en pantallas muy pequeñas */
   }
 
   .logo-box {
