@@ -498,8 +498,10 @@ h6 {
   .hero-intro h2 {
     font-size: 50px;
     line-height: 1.2;
-    text-align: left
-  }
+    text-align: left; /* Fixed comma to semicolon */
+    margin: 0;
+    max-height: 38px; /* Removed the space between 38 and px */
+}
 
   .hero-intro p {
     font-size: 20px;
