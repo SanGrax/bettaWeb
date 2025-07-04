@@ -719,39 +719,26 @@ section {
   opacity: 0.4;
 }
 
-/* Texto dentro de icon-box */
 .services .icon-box h4,
 .services .icon-box p {
   position: relative;
   z-index: 1;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-.services .icon-box:hover h4,
-.services .icon-box:hover p {
   opacity: 1;
   visibility: visible;
+  transition: none;
 }
 
-/* Estilos para cada icon-box individual */
-.services .iconbox-blue .background { background-image: url('/assets/img/imgContent.jpg'); }
-.services .iconbox-orange .background { background-image: url('/assets/img/fotoGifGato.png'); }
-.services .iconbox-pink .background { background-image: url('/assets/img/imgMotion.jpg'); }
-.services .iconbox-teal .background { background-image: url('/assets/img/imgCopy.jpg'); }
-.services .iconbox-black .background { background-image: url('/assets/img/imgSocial.webp'); }
-.services .iconbox-red .background { background-image: url('/assets/img/fotoGifInfluencer.png'); }
+ /*Estilos para cada icon-box individual */
+.services .iconbox-blue .background { background-image: url('/assets/img/CREACION_DE_CONTENIDO.jpg'); }
+.services .iconbox-orange .background { background-image: url('/assets/img/DISENIO.png'); }
+.services .iconbox-pink .background { background-image: url('/assets/img/MOTION\ GRAPHICS.png'); }
+.services .iconbox-teal .background { background-image: url('/assets/img/CREATIVIDAD\ Y\ COPY.png'); }
+.services .iconbox-black .background { background-image: url('/assets/img/ADS.png'); }
+.services .iconbox-red .background { background-image: url('/assets/img/SOUND\ BRANDING.jpg'); } 
 
-.services .iconbox-orange .background:hover {
-  background-image: url('/assets/img/gifGato.webp');
-  transition: background 0.5s ease-in-out;
-}
 
-.services .iconbox-red .background:hover {
-  background-image: url('/assets/img/gifInfluencer.webp');
-  transition: background 0.5s ease-in-out;
-}
+
+
 
 @media (max-width: 768px) {
   .services .icon-box {

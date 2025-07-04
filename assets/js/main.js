@@ -1,10 +1,4 @@
-/**
-* Template Name: Resi
-* Template URL: https://bootstrapmade.com/resi-free-bootstrap-html-template/
-* Updated: Mar 17 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 
 (function() {
   "use strict";
@@ -21,48 +15,77 @@
     }
   }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const popup = document.getElementById("popup-carousel");
-    const popupImg = document.querySelector(".carousel-img");
-    const closeBtn = document.querySelector(".close-btn");
-    const prevBtn = document.querySelector(".prev-btn");
-    const nextBtn = document.querySelector(".next-btn");
-  
-    // Imágenes del carrusel
+  /**
+   * Servicio: Popup carrusel multimedia (imagen/video)
+   */
+  window.addEventListener("load", () => {
+    const popup = select("#popup-carousel");
+    const popupContent = select(".carousel");
+    const closeBtn = select(".close-btn");
+    const prevBtn = select(".prev-btn");
+    const nextBtn = select(".next-btn");
+
     let currentIndex = 0;
-    let currentImages = [];
-  
-     // Detectar clic en cualquier enlace de icon-box
-  document.querySelectorAll(".icon-box a").forEach((link) => {
-    link.addEventListener("click", (e) => {
+    let currentMedia = [];
+
+    const showMedia = () => {
+      popupContent.querySelectorAll(".carousel-img, video").forEach(el => el.remove());
+
+      const src = currentMedia[currentIndex];
+      const isVideo = src.endsWith(".mp4");
+
+      const element = isVideo
+        ? Object.assign(document.createElement("video"), {
+            src,
+            controls: true,
+            autoplay: true,
+            muted: true,
+            className: "carousel-img"
+          })
+        : Object.assign(document.createElement("img"), {
+            src,
+            alt: "Imagen del servicio",
+            className: "carousel-img"
+          });
+
+      popupContent.insertBefore(element, nextBtn);
+    };
+
+    on("click", ".icon-box a", function (e) {
+      const data = this.getAttribute("data-images");
+      if (!data) return;
+
       e.preventDefault();
-      currentImages = JSON.parse(link.getAttribute("data-images")); // Obtener imágenes
-      currentIndex = 0; // Reiniciar el índice
-      popupImg.src = currentImages[currentIndex]; // Mostrar la primera imagen
-      popup.classList.remove("hidden");
-      popup.style.opacity = "1";
-      popup.style.visibility = "visible";
-    });
-  });
-  
-    // Cerrar popup
-    closeBtn.addEventListener("click", () => {
+
+      try {
+        currentMedia = JSON.parse(data);
+        if (!Array.isArray(currentMedia) || currentMedia.length === 0) return;
+        currentIndex = 0;
+        showMedia();
+        popup.classList.remove("hidden");
+        popup.style.opacity = "1";
+        popup.style.visibility = "visible";
+      } catch (err) {
+        console.error("Error leyendo data-images:", err);
+      }
+    }, true);
+
+    on("click", ".close-btn", () => {
       popup.style.opacity = "0";
       popup.style.visibility = "hidden";
       setTimeout(() => popup.classList.add("hidden"), 300);
     });
-  
-   // Navegar en el carrusel
-    prevBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-    popupImg.src = currentImages[currentIndex];
-  });
 
-  nextBtn.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % currentImages.length;
-    popupImg.src = currentImages[currentIndex];
+    on("click", ".prev-btn", () => {
+      currentIndex = (currentIndex - 1 + currentMedia.length) % currentMedia.length;
+      showMedia();
+    });
+
+    on("click", ".next-btn", () => {
+      currentIndex = (currentIndex + 1) % currentMedia.length;
+      showMedia();
+    });
   });
-});
   
 
   /**
