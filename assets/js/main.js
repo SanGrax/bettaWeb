@@ -19,73 +19,93 @@
    * Servicio: Popup carrusel multimedia (imagen/video)
    */
   window.addEventListener("load", () => {
-    const popup = select("#popup-carousel");
-    const popupContent = select(".carousel");
-    const closeBtn = select(".close-btn");
-    const prevBtn = select(".prev-btn");
-    const nextBtn = select(".next-btn");
+  const popup = select("#popup-carousel");
+  const popupContent = select(".carousel");
+  const closeBtn = select(".close-btn");
+  const prevBtn = select(".prev-btn");
+  const nextBtn = select(".next-btn");
 
-    let currentIndex = 0;
-    let currentMedia = [];
+  let currentIndex = 0;
+  let currentMedia = [];
 
-    const showMedia = () => {
-      popupContent.querySelectorAll(".carousel-img, video").forEach(el => el.remove());
+  // ✅ Mostrar la imagen o video actual en el carrusel
+  const showMedia = () => {
+    // Limpiar cualquier media previa (imagen o video)
+    popupContent.querySelectorAll(".carousel-img, video").forEach(el => el.remove());
 
-      const src = currentMedia[currentIndex];
-      const isVideo = src.endsWith(".mp4");
+    const src = currentMedia[currentIndex];
+    const isVideo = src.endsWith(".mp4");
 
-      const element = isVideo
-        ? Object.assign(document.createElement("video"), {
-            src,
-            controls: true,
-            autoplay: true,
-            muted: true,
-            className: "carousel-img"
-          })
-        : Object.assign(document.createElement("img"), {
-            src,
-            alt: "Imagen del servicio",
-            className: "carousel-img"
-          });
+    // Crear imagen o video según el tipo de archivo
+    const element = isVideo
+      ? Object.assign(document.createElement("video"), {
+          src,
+          controls: true,
+          autoplay: true,
+          muted: false, // ✅ Mostrar video desmuteado
+          className: "carousel-img"
+        })
+      : Object.assign(document.createElement("img"), {
+          src,
+          alt: "Imagen del servicio",
+          className: "carousel-img"
+        });
 
-      popupContent.insertBefore(element, nextBtn);
-    };
+    // Insertar el nuevo elemento justo antes del botón "siguiente"
+    popupContent.insertBefore(element, nextBtn);
+  };
 
-    on("click", ".icon-box a", function (e) {
-      const data = this.getAttribute("data-images");
-      if (!data) return;
+  // ✅ Al hacer clic en una imagen (box), mostrar el popup
+  on("click", ".icon-box a", function (e) {
+    const data = this.getAttribute("data-images");
+    if (!data) return;
 
-      e.preventDefault();
+    e.preventDefault();
 
-      try {
-        currentMedia = JSON.parse(data);
-        if (!Array.isArray(currentMedia) || currentMedia.length === 0) return;
-        currentIndex = 0;
-        showMedia();
-        popup.classList.remove("hidden");
-        popup.style.opacity = "1";
-        popup.style.visibility = "visible";
-      } catch (err) {
-        console.error("Error leyendo data-images:", err);
-      }
-    }, true);
-
-    on("click", ".close-btn", () => {
-      popup.style.opacity = "0";
-      popup.style.visibility = "hidden";
-      setTimeout(() => popup.classList.add("hidden"), 300);
-    });
-
-    on("click", ".prev-btn", () => {
-      currentIndex = (currentIndex - 1 + currentMedia.length) % currentMedia.length;
+    try {
+      currentMedia = JSON.parse(data);
+      if (!Array.isArray(currentMedia) || currentMedia.length === 0) return;
+      currentIndex = 0;
       showMedia();
-    });
+      popup.classList.remove("hidden");
+      popup.style.opacity = "1";
+      popup.style.visibility = "visible";
+    } catch (err) {
+      console.error("Error leyendo data-images:", err);
+    }
+  }, true);
 
-    on("click", ".next-btn", () => {
-      currentIndex = (currentIndex + 1) % currentMedia.length;
-      showMedia();
-    });
+  // ✅ Al hacer clic en "X" (cerrar popup), ocultar y detener video
+  on("click", ".close-btn", () => {
+    // ✅ Si hay un video reproduciéndose, pausarlo y reiniciarlo
+    const video = popupContent.querySelector("video");
+    if (video) {
+      video.pause();
+      video.currentTime = 0;
+    }
+
+    // ✅ Limpiar el contenido del carrusel
+    popupContent.querySelectorAll(".carousel-img, video").forEach(el => el.remove());
+
+    // Ocultar el popup visualmente
+    popup.style.opacity = "0";
+    popup.style.visibility = "hidden";
+    setTimeout(() => popup.classList.add("hidden"), 300);
   });
+
+  // ✅ Botón "anterior"
+  on("click", ".prev-btn", () => {
+    currentIndex = (currentIndex - 1 + currentMedia.length) % currentMedia.length;
+    showMedia();
+  });
+
+  // ✅ Botón "siguiente"
+  on("click", ".next-btn", () => {
+    currentIndex = (currentIndex + 1) % currentMedia.length;
+    showMedia();
+  });
+});
+
   
 
   /**

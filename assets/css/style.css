@@ -87,16 +87,12 @@ h6 {
   padding: 0;
 }
 #header .logo img {
-  max-height: 70px;
+  max-height: 60px;
   width: auto;
 }
 
 #header .logo a {
   color: #5a5af3;
-}
-
-#header .logo img {
-  max-height: 70px;
 }
 
 @media (max-width: 992px) {
@@ -259,77 +255,81 @@ h6 {
   background-color: #f8f8f8;
 }
 /*--------------------------------------------------------------
+/*----------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-/* Estilos para el Texto de Bienvenida */
+
 .hero-intro-section {
   background-color: #000;
-  padding: 100px 20px 20px; /* Agrega un padding superior para evitar que el texto quede cubierto por el navbar */
+  padding: 100px 40px 60px 80px; /* top right bottom left */
   text-align: left;
 }
 
+.hero-intro {
+  max-width: 800px;
+}
+
+/* TITULO PRINCIPAL */
 .hero-intro h2 {
   font-size: 90px;
   font-family: 'Work Sans', sans-serif;
-  color: #ffffff; /* Color blanco para el "BIENVENIDO" */
+  color: #ffffff;
   margin: 0;
+  line-height: 1.1;
+  text-align: left;
 }
 
-.hero-intro h3 {
-  font-size: 90px;
-  font-family: 'Work Sans', sans-serif;
-  line-height: 1.1;
+/* SEGUNDA Y TERCERA LÍNEA */
+.hero-intro .highlight {
+  color: #fdde59;
 }
 
 .hero-intro .white-text {
-  color: #ffffff; /* Color blanco para A LA */
+  color: #ffffff;
 }
 
-.hero-intro .highlight {
-  color: #fdde59; /* Color amarillo para NUEVA y COMUNICACIÓN */
-}
-
+/* TEXTO FINAL */
 .hero-intro p {
   font-size: 20px;
   color: #ffffff;
   font-family: 'Sarala', sans-serif;
-  margin-top: 10px;
+  margin-top: 
+  0px;
+  line-height: 1.4;
+  text-align: left;
 }
 
-.hero-intro h3 span:first-child {
-  margin-top: 0; /* Elimina el margen superior para acercar las palabras */
-}
-.hero-intro h3 span {
-  line-height: 0; /* Ajusta este valor si necesitas que las líneas estén más cerca */
-}
+/* ----------------------------
+   RESPONSIVE: Tablets y menores
+---------------------------- */
+@media (max-width: 991px) {
+  .hero-intro h2 {
+    font-size: 60px;
+  }
 
-/* Estilos para la Sección del Video */
-.hero-video-section {
-  width: 100%;
-  background-color: #000;
-  padding: 60px 0; /* Añade espacio arriba y abajo */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .hero-intro p {
+    font-size: 18px;
+  }
 }
 
-.hero-video-container {
-  position: relative;
-  width: 100%; /* Reduce el ancho al 80% del contenedor padre */
-  max-width: 1800px; /* Establece un ancho máximo */
-  height: auto;
-  margin: 0 auto; /* Centra el contenedor */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Opcional: añade sombra para mejor contraste */
+/* ----------------------------
+   RESPONSIVE: Teléfonos pequeños
+---------------------------- */
+@media (max-width: 575px) {
+  .hero-intro-section {
+    padding: 80px 20px 20px 20px;
+  }
+
+  .hero-intro h2 {
+    font-size: 36px;
+    line-height: 1.2;
+  }
+
+  .hero-intro p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
 }
-
-#hero-video {
-  width: 100%;
-  height: auto;
-  border-radius: 10px; /* Opcional: bordes redondeados */
-  display: block;
-}
-
-
 
 
 #hero ul {
@@ -404,80 +404,37 @@ h6 {
   #hero .hero-img img {
     width: 70%; /* Ajusta el tamaño de la imagen */
   }
+}
+  
 
-  /* Ajuste de texto para pantallas más pequeñas */
-  .hero-intro h3 {
-    font-size: 60px;
-    line-height: 1.2;
-    text-align: left
-  }
 
-  .hero-intro h2 {
-    font-size: 50px;
-    line-height: 1.2;
-    text-align: left; /* Fixed comma to semicolon */
-    margin: 0;
-    max-height: 38px; /* Removed the space between 38 and px */
+/* Contenedor general con más margen */
+.hero-video-wrapper {
+  padding: 20px 20px; /* Más margen arriba y abajo */
+  background-color: #000;
+  display: flex;
+  justify-content: center;
 }
 
-  .hero-intro p {
-    font-size: 20px;
-    text-align: left
-  }
+/* Contenedor más chico y centrado */
+.hero-video-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px; /* Antes tenías 1800px */
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-/* Estilos para pantallas pequeñas (móviles en apaisado o menores) */
-@media (max-width: 768px) {
-  #hero .hero-img img {
-    width: 80%; /* Ajuste del tamaño de la imagen en dispositivos más pequeños */
-  }
-
-  /* Ajuste de texto en dispositivos más pequeños */
-  .hero-intro h3 {
-    font-size: 48px; /* Reducir tamaño de fuente */
-    line-height: 1.2;
-    text-align: left
-  }
-
-  .hero-intro h2 {
-    font-size: 40px; /* Ajustar tamaño de h2 */
-    line-height: 1.3;
-    margin-bottom: 20px; /* Menos espacio debajo */
-    text-align: left
-  }
-
-  .hero-intro p {
-    font-size: 18px; /* Ajustar tamaño de párrafo */
-    line-height: 1.6; /* Espaciado adecuado */
-    text-align: left
-  }
+/* Video 100% responsive */
+#hero-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: none;
 }
 
-/* Estilos para pantallas muy pequeñas (móviles) */
-@media (max-width: 575px) {
-  #hero {
-    text-align: left; /* Centrar el texto */
-  }
-
-  .hero-intro h3 {
-    font-size: 36px; /* Tamaño aún más pequeño en pantallas muy pequeñas */
-    line-height: 1.3;
-    text-align: left
-  }
-
-  .hero-intro h2 {
-    font-size: 36px; /* Reducir aún más el tamaño del texto */
-    line-height: 1.3;
-    text-align: left
-  }
-
-  .hero-intro p {
-    font-size: 16px; /* Tamaño de texto para dispositivos móviles pequeños */
-    line-height: 1.6;
-    padding: 0 15px; /* Añadir padding para evitar que el texto toque los bordes */
-    text-align: left
-  }
-}
 
 /*--------------------------------------------------------------
 # Sections General
@@ -731,7 +688,7 @@ section {
  /*Estilos para cada icon-box individual */
 .services .iconbox-blue .background { background-image: url('/assets/img/CREACION_DE_CONTENIDO.jpg'); }
 .services .iconbox-orange .background { background-image: url('/assets/img/DISENIO.png'); }
-.services .iconbox-pink .background { background-image: url('/assets/img/MOTION\ GRAPHICS.png'); }
+.services .iconbox-pink .background { background-image: url('/assets/img/MOTION\ GRAPHIC.png'); }
 .services .iconbox-teal .background { background-image: url('/assets/img/CREATIVIDAD\ Y\ COPY.png'); }
 .services .iconbox-black .background { background-image: url('/assets/img/ADS.png'); }
 .services .iconbox-red .background { background-image: url('/assets/img/SOUND\ BRANDING.jpg'); } 
@@ -802,93 +759,69 @@ section {
 
 
 
-#customers {
-  padding: 20px 0;
-  background-color: #000;
-  overflow: hidden;
-}
-.customers h2{
-  color: #ffffff;
+.customers {
+  padding: 60px 0;
   text-align: center;
+  background: #000; 
 }
 
-.logos {
+.customers h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #ffffff;
+}
+
+.logo-track-wrapper {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.logo-track {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-wrap: nowrap;
-  animation: scrollLogos 20s linear infinite;
+  width: fit-content;
+  animation: scroll-logos 30s linear infinite;
 }
 
 .logo-box {
-  padding: 20px;
   flex: 0 0 auto;
-  transition: transform 0.3s ease;
+  width: 280px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
 }
 
 .logo-box img {
+  max-height: 120px;
   max-width: 100%;
-  height: auto;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
 }
 
-@keyframes scrollLogos {
+.logo-box img:hover {
+  filter: grayscale(0%);
+}
+
+/* Animación infinita */
+@keyframes scroll-logos {
   0% {
-    transform: translateX(0);
+    transform: translateX(0%);
   }
   100% {
     transform: translateX(-50%);
   }
 }
 
-
-/* Animación de desplazamiento continuo de los logos */
-@keyframes scrollLogos {
-  from {
-    transform: translateX(100%); /* Comienza fuera de la pantalla a la derecha */
-  }
-  to {
-    transform: translateX(-100%); /* Desplazamiento continuo hacia la izquierda */
-  }
-}
-
-/* Efecto de zoom cuando el usuario pasa el mouse sobre el logo */
-.logo-box:hover {
-  transform: scale(1.1);
-}
-
-/* Estilos responsivos para pantallas más pequeñas */
-
-
-
-/* Dispositivos de hasta 768px (tablets y smartphones grandes) */
+/* Responsive */
 @media (max-width: 768px) {
-  .logos {
-    animation: scrollLogos 20s linear infinite; /* Desplazamiento más lento en pantallas más pequeñas */
-  }
-
   .logo-box {
-    padding: 10px;
-  }
-
-  .logo-box img {
-    max-width: 80%; /* Reduce el tamaño de los logos */
+    width: 120px;
+    margin: 0 10px;
   }
 }
 
-/* Dispositivos de hasta 480px (smartphones pequeños) */
-@media (max-width: 480px) {
-  .logos {
-    animation: scrollLogos 20s linear infinite; /* Desplazamiento más lento en pantallas muy pequeñas */
-  }
-
-  .logo-box {
-    padding: 5px;
-  }
-
-  .logo-box img {
-    max-width: 70%; /* Aún más pequeño en pantallas de smartphones */
-  }
-}
 
 
 
@@ -896,65 +829,79 @@ section {
 /*--------------------------------------------------------
 #whatsapp
 --------------------------------------------------------*/
-.whatsapp-float {
+/* Contenedor flotante */
+.social-float-group {
   position: fixed;
-  width: 60px;
-  height: 60px;
-  bottom: 40px;
-  right: 40px;
-  background-color: #25d366;
-  color: #FFF;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px; /* Espacio entre botones */
+  z-index: 9999;
+}
+
+/* Botón individual */
+.social-float {
+  position: relative;
+  background-color: #25d366; /* WhatsApp por defecto */
+  color: white;
   border-radius: 50%;
-  text-align: center;
-  font-size: 30px;
-  box-shadow: 2px 2px 3px #999;
-  z-index: 1000;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 24px;
   transition: background-color 0.3s;
 }
 
-.whatsapp-float i {
-  margin-top: 15px;
+/* Iconos específicos */
+.social-float.whatsapp {
+  background-color: #25d366;
+}
+.social-float.instagram {
+  background-color: #e1306c;
+}
+.social-float.linkedin {
+  background-color: #0077b5;
 }
 
-.whatsapp-float:hover {
-  background-color: #128c7e;
-  color: #FFF;
-  text-decoration: none;
-}
-
-.whatsapp-float .tooltip-text {
+/* Tooltip */
+.social-float .tooltip-text {
   visibility: hidden;
+  opacity: 0;
   width: 140px;
-  background-color: #128c7e; /* Matching hover color */
+  background-color: #333;
   color: #fff;
   text-align: center;
   border-radius: 5px;
   padding: 5px;
   position: absolute;
-  z-index: 1;
-  bottom: 125%; /* Position above the button */
+  bottom: 125%;
   left: 50%;
-  margin-left: -70px; /* Center the tooltip */
-  opacity: 0;
-  font-size: 12px; /* Smaller font size */
+  margin-left: -70px;
+  font-size: 12px;
   transition: opacity 0.3s;
+  z-index: 1;
 }
 
-.whatsapp-float .tooltip-text::after {
+.social-float .tooltip-text::after {
   content: "";
   position: absolute;
-  top: 100%; /* Below the tooltip */
+  top: 100%;
   left: 50%;
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #128c7e transparent transparent transparent; /* Matching background color */
+  border-color: #333 transparent transparent transparent;
 }
 
-.whatsapp-float:hover .tooltip-text {
+/* Mostrar tooltip al hacer hover */
+.social-float:hover .tooltip-text {
   visibility: visible;
   opacity: 1;
 }
+
 
 
 
