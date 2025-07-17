@@ -16,95 +16,100 @@
   }
 
   /**
-   * Servicio: Popup carrusel multimedia (imagen/video)
+   * Servicio: Popup carrusel multimedia mejorado (sin indicadores)
    */
   window.addEventListener("load", () => {
-  const popup = select("#popup-carousel");
-  const popupContent = select(".carousel");
-  const closeBtn = select(".close-btn");
-  const prevBtn = select(".prev-btn");
-  const nextBtn = select(".next-btn");
+    const popup = select("#popup-carousel");
+    const popupContent = select(".carousel");
+    const closeBtn = select(".close-btn");
+    const prevBtn = select(".prev-btn");
+    const nextBtn = select(".next-btn");
 
-  let currentIndex = 0;
-  let currentMedia = [];
+    let currentIndex = 0;
+    let currentMedia = [];
+    let isTransitioning = false;
 
-  // ✅ Mostrar la imagen o video actual en el carrusel
-  const showMedia = () => {
-    // Limpiar cualquier media previa (imagen o video)
-    popupContent.querySelectorAll(".carousel-img, video").forEach(el => el.remove());
-
-    const src = currentMedia[currentIndex];
-    const isVideo = src.endsWith(".mp4");
-
-    // Crear imagen o video según el tipo de archivo
-    const element = isVideo
-      ? Object.assign(document.createElement("video"), {
-          src,
-          controls: true,
-          autoplay: true,
-          muted: false, // ✅ Mostrar video desmuteado
-          className: "carousel-img"
-        })
-      : Object.assign(document.createElement("img"), {
-          src,
-          alt: "Imagen del servicio",
-          className: "carousel-img"
-        });
-
-    // Insertar el nuevo elemento justo antes del botón "siguiente"
-    popupContent.insertBefore(element, nextBtn);
-  };
-
-  // ✅ Al hacer clic en una imagen (box), mostrar el popup
-  on("click", ".icon-box a", function (e) {
-    const data = this.getAttribute("data-images");
-    if (!data) return;
-
-    e.preventDefault();
-
-    try {
-      currentMedia = JSON.parse(data);
-      if (!Array.isArray(currentMedia) || currentMedia.length === 0) return;
-      currentIndex = 0;
-      showMedia();
-      popup.classList.remove("hidden");
-      popup.style.opacity = "1";
-      popup.style.visibility = "visible";
-    } catch (err) {
-      console.error("Error leyendo data-images:", err);
-    }
-  }, true);
-
-  // ✅ Al hacer clic en "X" (cerrar popup), ocultar y detener video
-  on("click", ".close-btn", () => {
-    // ✅ Si hay un video reproduciéndose, pausarlo y reiniciarlo
-    const video = popupContent.querySelector("video");
-    if (video) {
-      video.pause();
-      video.currentTime = 0;
+    function showMedia(direction = "next") {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      // Remove old media
+      popupContent.querySelectorAll(".carousel-img, video").forEach(el => el.remove());
+      // Create new media
+      const src = currentMedia[currentIndex];
+      const isVideo = src.endsWith(".mp4");
+      const el = isVideo
+        ? Object.assign(document.createElement("video"), { src, controls: true, autoplay: true, muted: false, loop: true, className: "carousel-img" })
+        : Object.assign(document.createElement("img"), { src, alt: "Imagen del servicio", className: "carousel-img" });
+      el.style.opacity = 0;
+      el.style.transition = "opacity 0.3s";
+      popupContent.insertBefore(el, nextBtn);
+      setTimeout(() => { el.style.opacity = 1; }, 50);
+      setTimeout(() => { isTransitioning = false; }, 300);
     }
 
-    // ✅ Limpiar el contenido del carrusel
-    popupContent.querySelectorAll(".carousel-img, video").forEach(el => el.remove());
+    function closePopup() {
+      const video = popupContent.querySelector("video");
+      if (video) { video.pause(); video.currentTime = 0; }
+      popupContent.querySelectorAll(".carousel-img, video").forEach(el => el.remove());
+      popup.style.opacity = "0";
+      popup.style.visibility = "hidden";
+      setTimeout(() => popup.classList.add("hidden"), 300);
+    }
 
-    // Ocultar el popup visualmente
-    popup.style.opacity = "0";
-    popup.style.visibility = "hidden";
-    setTimeout(() => popup.classList.add("hidden"), 300);
-  });
+    function navigatePrev() {
+      if (isTransitioning) return;
+      currentIndex = (currentIndex - 1 + currentMedia.length) % currentMedia.length;
+      showMedia("prev");
+    }
 
-  // ✅ Botón "anterior"
-  on("click", ".prev-btn", () => {
-    currentIndex = (currentIndex - 1 + currentMedia.length) % currentMedia.length;
-    showMedia();
-  });
+    function navigateNext() {
+      if (isTransitioning) return;
+      currentIndex = (currentIndex + 1) % currentMedia.length;
+      showMedia("next");
+    }
 
-  // ✅ Botón "siguiente"
-  on("click", ".next-btn", () => {
-    currentIndex = (currentIndex + 1) % currentMedia.length;
-    showMedia();
+    // Event listeners
+    on("click", ".icon-box a", function (e) {
+      const data = this.getAttribute("data-images");
+      if (!data) return;
+      e.preventDefault();
+      try {
+        currentMedia = JSON.parse(data);
+        if (!Array.isArray(currentMedia) || currentMedia.length === 0) return;
+        currentIndex = 0;
+        showMedia();
+        popup.classList.remove("hidden");
+        popup.style.opacity = "1";
+        popup.style.visibility = "visible";
+      } catch (err) {
+        console.error("Error leyendo data-images:", err);
+      }
+    }, true);
+
+    on("click", ".close-btn", closePopup);
+    on("click", ".prev-btn", navigatePrev);
+    on("click", ".next-btn", navigateNext);
+
+    // Teclado
+    document.addEventListener("keydown", (e) => {
+      if (!popup.classList.contains("hidden")) {
+        if (e.key === "ArrowLeft") { e.preventDefault(); navigatePrev(); }
+        if (e.key === "ArrowRight") { e.preventDefault(); navigateNext(); }
+        if (e.key === "Escape") { e.preventDefault(); closePopup(); }
+      }
+    });
+
+    // Swipe para móviles
+    let startX = 0;
+    popup.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; }, { passive: true });
+    popup.addEventListener("touchend", (e) => {
+      let endX = e.changedTouches[0].clientX;
+      if (Math.abs(startX - endX) > 50) {
+        if (startX > endX) navigateNext();
+        else navigatePrev();
+      }
+    }, { passive: true });
   });
-});
 
   
 
